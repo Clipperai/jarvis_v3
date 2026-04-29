@@ -13,20 +13,17 @@ if "chat" not in st.session_state:
 
 reply = ''
 
-progress = st.progress(0)
-status = st.empty()
-
 # ===== Buttons =====
 if st.button("Press Me"):
     
-        status.info("🎧 Listening...")
-        progress.progress(20)
+        status.info("...")
+    
         time.sleep(1)
         cmd = st.text_input("Enter command")
         if cmd:
                 st.session_state.chat.append(("You:", cmd))
                 status.info("🔍 Searching command...")
-                progress.progress(50)
+                
                 time.sleep(2)
 
                 if "exit" in cmd:
@@ -40,14 +37,13 @@ if st.button("Press Me"):
 
                 elif "play" in cmd:
                         status.info("🎶 Playing...")
-                        progress.progress(70)
                         time.sleep(1)
                         cmd = cmd.replace("play"," ").split()
                         webbrowser.open(f"https://www.youtube.com/results?search_query={cmd}")
                         
                 else:
                         status.info("🧠 Thinking...")
-                        progress.progress(70)
+                        
                         reply = ask_ai(cmd)
                         st.write(reply)
                         # speak(reply)
