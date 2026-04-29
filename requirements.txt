@@ -1,0 +1,7 @@
+streamlit
+requests
+pyttsx3
+speech_recognition
+webbrowser
+pywhatkit
+pythoncom
