@@ -12,7 +12,7 @@ if "chat" not in st.session_state:
     st.session_state.chat = []
 
 reply = ''
-
+status = st.empty()
 # ===== Buttons =====
 if st.button("Press Me"):
     
