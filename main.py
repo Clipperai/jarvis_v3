@@ -1,8 +1,9 @@
 import streamlit as st # type: ignore
 import time
 from brain import ask_ai
-from media import play
 from commands import run_command
+import webbrowser
+
 
 # ===== UI =====
 st.title("Jarvis V3")
@@ -42,7 +43,7 @@ if st.button("Press Me"):
                         progress.progress(70)
                         time.sleep(1)
                         cmd = cmd.replace("play"," ").split()
-                        play(cmd)
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={cmd}")
                         
                 else:
                         status.info("🧠 Thinking...")
