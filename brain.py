@@ -1,13 +1,17 @@
-import requests
+from groq import Groq # type: ignore
+import streamlit as st # type: ignore
 
 
-# ===== Local AI (Phi) =====
+client = Groq(api_key = st.secrets["GROQ_API_KEY"])
+
+MODEL="openai/gpt-oss-safeguard-20b"
+
+# ===== Groq =====
+
 def ask_ai(prompt):
-    try:
-        res = requests.post(
-            "http://localhost:11434/api/generate",
-            json={"model": "phi", "prompt": prompt, "stream": False}
-        )
-        return res.json()["response"]
-    except:
-        return "AI not available"
+    response = client.chat.completions.create( 
+                model = MODEL,
+                messages = [{"role": "user", "content": prompt}]
+            )
+    
+    return response.choices[0].message.content
