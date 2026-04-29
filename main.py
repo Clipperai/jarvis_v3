@@ -20,37 +20,38 @@ if st.button("Press Me"):
     
         time.sleep(1)
         cmd = st.text_input("Enter command")
-        if cmd:
-                st.session_state.chat.append(("You:", cmd))
-                status.info("🔍 Searching command...")
-                
-                time.sleep(2)
-
-                if "exit" in cmd:
-                    reply = "Goodbye"
-                
-                elif "youtube" in cmd:
-                    run_command(cmd)
-                
-                elif "time" in cmd:
-                    run_command(cmd)
-
-                elif "play" in cmd:
-                        status.info("🎶 Playing...")
-                        time.sleep(1)
-                        cmd = cmd.replace("play"," ").split()
-                        webbrowser.open(f"https://www.youtube.com/results?search_query={cmd}")
-                        
-                else:
-                        status.info("🧠 Thinking...")
-                        
-                        reply = ask_ai(cmd)
-                        st.write(reply)
-                        # speak(reply)
-
-                status.success("✅ Done") 
-
-        st.session_state.chat.append(("Jarvis", reply))
+        if st.button("submit"):
+            if cmd:
+                    st.session_state.chat.append(("You:", cmd))
+                    status.info("🔍 Searching command...")
+                    
+                    time.sleep(2)
+    
+                    if "exit" in cmd:
+                        reply = "Goodbye"
+                    
+                    elif "youtube" in cmd:
+                        run_command(cmd)
+                    
+                    elif "time" in cmd:
+                        run_command(cmd)
+    
+                    elif "play" in cmd:
+                            status.info("🎶 Playing...")
+                            time.sleep(1)
+                            cmd = cmd.replace("play"," ").split()
+                            webbrowser.open(f"https://www.youtube.com/results?search_query={cmd}")
+                            
+                    else:
+                            status.info("🧠 Thinking...")
+                            
+                            reply = ask_ai(cmd)
+                            st.write(reply)
+                            # speak(reply)
+    
+                    status.success("✅ Done") 
+    
+            st.session_state.chat.append(("Jarvis", reply))
 
 # ===== Chat Display =====
 for sender, msg in st.session_state.chat:
