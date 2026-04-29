@@ -1,8 +1,6 @@
 import streamlit as st # type: ignore
 import time
 from brain import ask_ai
-from listener import listen
-from speaker import speak
 from media import play
 from commands import run_command
 
@@ -18,12 +16,12 @@ progress = st.progress(0)
 status = st.empty()
 
 # ===== Buttons =====
-if st.button("🎤 Speak"):
+if st.button("Press Me"):
     
         status.info("🎧 Listening...")
         progress.progress(20)
         time.sleep(1)
-        cmd = listen()
+        cmd = st.text_input("Enter command")
         if cmd:
                 st.session_state.chat.append(("You:", cmd))
                 status.info("🔍 Searching command...")
